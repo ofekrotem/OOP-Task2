@@ -1,7 +1,10 @@
-package modals;
+package tests;
 
 import api.EdgeData;
 import api.NodeData;
+import modals.DirectedWeightedGraph_Class;
+import modals.GeoLocation_Class;
+import modals.NodeData_Class;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;

@@ -1,5 +1,6 @@
-package modals;
+package tests;
 
+import modals.EdgeData_Class;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
