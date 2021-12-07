@@ -7,12 +7,12 @@ public class EdgeData_Class implements EdgeData {
     private double weight;
     private String info;
 
-    public EdgeData_Class(int src, int dest, int tag, double weight, String info) {
+    public EdgeData_Class(int src, int dest, double weight) {
         this.src = src;
         this.dest = dest;
-        this.tag = tag;
         this.weight = weight;
-        this.info = info;
+        this.info = null;
+        this.tag = 0;
     }
 
     @Override

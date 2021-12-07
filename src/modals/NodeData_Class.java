@@ -9,12 +9,12 @@ public class NodeData_Class implements NodeData {
     private double weight;
     private String info;
 
-    public NodeData_Class(int key, GeoLocation geo, double weight, String info, int tag) {
+    public NodeData_Class(int key, GeoLocation geo) {
         this.key = key;
         this.geo = geo;
-        this.weight = weight;
-        this.info = info;
-        this.tag = tag;
+        this.weight = 0;
+        this.info = null;
+        this.tag = 0;
     }
 
     @Override
