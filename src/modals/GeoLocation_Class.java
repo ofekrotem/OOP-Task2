@@ -3,7 +3,7 @@ package modals;
 import api.GeoLocation;
 
 public class GeoLocation_Class implements GeoLocation {
-    private double x, y, z;
+    private  final double x, y, z;
 
     public GeoLocation_Class(double x, double y, double z) {
         this.x = x;

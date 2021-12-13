@@ -3,8 +3,9 @@ package modals;
 import api.EdgeData;
 
 public class EdgeData_Class implements EdgeData {
-    private int src, dest, tag;
-    private double weight;
+    private final int src, dest;
+    private int tag;
+    private final double weight;
     private String info;
 
     public EdgeData_Class(int src, int dest, double weight) {

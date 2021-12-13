@@ -3,8 +3,6 @@ package modals;
 import api.DirectedWeightedGraph;
 import api.EdgeData;
 import api.NodeData;
-import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
 
 
 import java.util.*;
@@ -38,6 +36,7 @@ public class DirectedWeightedGraph_Class implements DirectedWeightedGraph {
     public HashMap<Integer, NodeData> getNodes() {
         return nodes;
     }
+
     public HashMap<String, EdgeData> getAllEdges() {
         return allEdges;
     }
@@ -53,6 +52,33 @@ public class DirectedWeightedGraph_Class implements DirectedWeightedGraph {
         this.nodes = new HashMap<Integer, NodeData>();
     }
 
+    public void makeTagsZero() {
+        for (NodeData node : this.nodes.values()) {
+            node.setTag(0);
+        }
+    }
+
+    public NodeData FirstNode() {
+        for (NodeData node : nodes.values()) {
+            return node;
+        }
+        return null;
+    }
+
+    public boolean checkTags() {
+        for (NodeData node : nodes.values()) {
+            if (node.getTag() != 3)
+                return false;
+        }
+        return true;
+    }
+    public void DijkstraPreparation(int src){
+        for (NodeData node : nodes.values()) {
+            if (node.getKey() == src)
+                node.setWeight(0);
+            else node.setWeight(Double.MAX_VALUE);
+        }
+    }
     @Override
     public NodeData getNode(int key) {
         return nodes.get(key);
@@ -105,8 +131,7 @@ public class DirectedWeightedGraph_Class implements DirectedWeightedGraph {
                 edgesOut.get(src).remove(dest);
                 edgesOut.get(src).put(dest, e);
             }
-        }
-        else {
+        } else {
             HashMap<Integer, EdgeData> t = new HashMap<Integer, EdgeData>();
             t.put(dest, e);
             edgesOut.put(src, t);
@@ -127,7 +152,7 @@ public class DirectedWeightedGraph_Class implements DirectedWeightedGraph {
     }
 
     @Override
-    public Iterator<NodeData> nodeIter()  {
+    public Iterator<NodeData> nodeIter() {
         mcNI = mc;
         return nodes.values().iterator();
     }
@@ -158,10 +183,16 @@ public class DirectedWeightedGraph_Class implements DirectedWeightedGraph {
         }
         edgesIn.remove(key);
         edgesOut.remove(key);
-        for(String k : allEdges.keySet()){
-            String[] arr = k.split(",");
-            if (Integer.parseInt(arr[0])==key||Integer.parseInt(arr[1])==key)
-                allEdges.remove(k);
+        String[] arr = new String[allEdges.keySet().size()];
+        int i=0;
+        for (String s : allEdges.keySet()){
+            arr[i] = s;
+            i++;
+        }
+        for (int j = 0 ; j< arr.length;j++) {
+            String[] arr2 = arr[j].split(",");
+            if (Integer.parseInt(arr2[0]) == key || Integer.parseInt(arr2[1]) == key)
+                allEdges.remove(arr[j]);
         }
         return nodes.remove(key);
 
@@ -179,7 +210,7 @@ public class DirectedWeightedGraph_Class implements DirectedWeightedGraph {
         if (mcEIN != 0 && mcEIN != mc) {
             new RuntimeException("The graph changed since the Edge Iterator from Node has been initialized!").printStackTrace();
         }
-        String s = src+","+dest;
+        String s = src + "," + dest;
         allEdges.remove(s);
         edgesIn.get(dest).remove(src);
         return edgesOut.get(src).remove(dest);

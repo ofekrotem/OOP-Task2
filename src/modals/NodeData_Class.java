@@ -4,7 +4,8 @@ import api.GeoLocation;
 import api.NodeData;
 
 public class NodeData_Class implements NodeData {
-    private int key, tag;
+    private final int key;
+    private int tag;
     private GeoLocation geo;
     private double weight;
     private String info;
