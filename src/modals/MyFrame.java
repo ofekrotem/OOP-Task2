@@ -64,7 +64,7 @@ public class MyFrame extends JFrame implements ActionListener {
     }
 
     public void AddPanel() {
-        mp = new MyPanel(this);
+        mp = new MyPanel(this,this.getWidth(),this.getHeight());
         this.add(mp);
     }
 

@@ -16,12 +16,14 @@ public class MyPanel extends JPanel {
     private double minY;
     private double maxX;
     private double maxY;
-    private final int Width = 700;
-    private final int Height = 600;
+    private final int Width;
+    private final int Height;
     private MyFrame frame;
     private final int Regular = 0, Center = 1, tsp = 2, shortestPath = 3;
 
-    public MyPanel(MyFrame frame) {
+    public MyPanel(MyFrame frame,int width,int height) {
+        this.Width = width;
+        this.Height = height;
         this.frame = frame;
         this.setVisible(true);
     }
